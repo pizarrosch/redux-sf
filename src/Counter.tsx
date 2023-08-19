@@ -1,15 +1,23 @@
-import React from "react";
+import React, {MouseEventHandler} from "react";
+import {useDispatch, useSelector, useStore} from "react-redux";
+import {Store} from "redux";
+import {ToolkitStore} from "@reduxjs/toolkit/dist/configureStore";
 
-type Props = {
-    changeNumber: (e: MouseEvent) => void;
+type TClickProps = {
+    decreaseNumber: () => void;
 }
 
-function Counter({changeNumber}: Props) {
+function Counter({decreaseNumber}: TClickProps) {
+
+    // @ts-ignore
+    const counter = useSelector((state) => state.count)
+    const dispatch = useDispatch();
+
     return (
         <div>
-            <span>0</span>
-            <button onClick={() => changeNumber}>Add</button>
-            <button onClick={() => changeNumber}>Subtract</button>
+            <span>{counter}</span>
+            <button onClick={() => dispatch({type: 'ADD_NUMBER'})}>Add</button>
+            <button onClick={decreaseNumber}>Subtract</button>
         </div>
     )
 }

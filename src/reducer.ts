@@ -15,20 +15,23 @@ type TMinusAction = {
     payload: 5,
 }
 
+
 export type TAction = TPlusAction | TMinusAction;
 
-export default function reducer(state: {count: number} = initialState, action: TAction) {
+export default function reducer(state: { count: number } = initialState, action: TAction) {
     switch (action.type) {
-        case 'ADD_NUMBER': return {
-            ...state,
-            count: state.count + 1
-        };
+        case 'ADD_NUMBER':
+            return {
+                ...state,
+                count: state.count + 1
+            };
         case 'SUBTRACT_NUMBER':
             return {
                 ...state,
                 count: state.count - 1
             };
-        default: return state;
+        default:
+            return state;
     }
 }
 

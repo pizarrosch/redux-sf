@@ -16,6 +16,7 @@ function App() {
     // 1. With store.dispatch
     // 2. (In the Counter component) via useDispatch
     function decreaseNumber() {
+        if (store.getState().disabledMinus) return;
         store.dispatch({
             type: 'SUBTRACT_NUMBER',
         });

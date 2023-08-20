@@ -1,14 +1,16 @@
-import React, {MouseEventHandler, useState} from "react";
-import {Provider, useDispatch} from "react-redux";
-import {configureStore, StoreEnhancer} from "@reduxjs/toolkit";
+import React from "react";
+import {Provider} from "react-redux";
+import {configureStore} from "@reduxjs/toolkit";
 import Counter from "./Counter";
 import reducer from "./reducer";
-import {TAction} from "./reducer";
-import {ToolkitStore} from "@reduxjs/toolkit/dist/configureStore";
+import Middleware from './Middleware';
 
 function App() {
 
-    const store = configureStore({reducer});
+    const store = configureStore({
+        reducer: reducer,
+        middleware: getDefaultMiddleware => getDefaultMiddleware().concat(Middleware)
+    });
 
     //For learning reasons two ways of dispatching are used:
     // 1. With store.dispatch

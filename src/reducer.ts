@@ -7,14 +7,11 @@ type Values = typeof initialState[Keys];
 
 type TPlusAction = {
     type: 'ADD_NUMBER',
-    payload: 5,
 }
 
 type TMinusAction = {
     type: 'SUBTRACT_NUMBER',
-    payload: 5,
 }
-
 
 export type TAction = TPlusAction | TMinusAction;
 

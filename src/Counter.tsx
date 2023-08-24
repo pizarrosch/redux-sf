@@ -1,5 +1,6 @@
-import React, {MouseEventHandler} from "react";
-import {useDispatch, useSelector, useStore} from "react-redux";
+import React, {ReducerState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {add} from "./reducerReduxToolkit";
 
 type TClickProps = {
     decreaseNumber: () => void;
@@ -8,14 +9,23 @@ type TClickProps = {
 function Counter({decreaseNumber}: TClickProps) {
 
     // @ts-ignore
-    const counter = useSelector((state) => state.count)
+    // const counter = useSelector((state) => state.count)
     // @ts-ignore
-    const isDisabled = useSelector((state) => state.disabledPlus)
+    // const isDisabledPlus = useSelector((state) => state.disabledPlus)
+    // @ts-ignore
+    // const isDisabledMinus = useSelector((state) => state.disabledMinus)
     const dispatch = useDispatch();
 
+    // or with ReduxToolkit reducer:
+    // @ts-ignore
+    const counter = useSelector((state) => state.counter.count)
+
     function increaseNumber() {
-        if (isDisabled) return;
-        dispatch({type: 'ADD_NUMBER'});
+        // if (isDisabledPlus) return;
+        // dispatch({type: 'ADD_NUMBER'});
+
+    //     Or with ReduxToolkit:
+        dispatch(add());
     }
 
     return (

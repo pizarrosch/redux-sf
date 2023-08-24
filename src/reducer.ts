@@ -1,3 +1,5 @@
+import {PayloadAction} from "@reduxjs/toolkit";
+
 type TState = {
     count: number,
     disabledPlus: boolean,
@@ -16,7 +18,7 @@ type TAction = {
 
 type Props = TAction | TState
 
-export default function reducer(state: TState = initialState, action : TAction) {
+export default function reducer(state: TState = initialState, action :  PayloadAction<TAction>) {
     switch (action.type) {
         case 'ADD_NUMBER':
             return {
@@ -31,12 +33,14 @@ export default function reducer(state: TState = initialState, action : TAction) 
         case 'DISABLE_PLUS':
             return {
                 ...state,
-                disabledPlus: true
+                disabledPlus: true,
+                disabledMinus: false
             };
         case 'DISABLE_MINUS':
             return {
                 ...state,
-                disabledMinus: true
+                disabledMinus: true,
+                disabledPlus: false
             };
         default:
             return state;
